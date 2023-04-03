@@ -1,0 +1,7 @@
+kafka:
+  brokers:
+    - kafka1:19092
+
+networks:
+  kafka_network:
+    driver: bridge
