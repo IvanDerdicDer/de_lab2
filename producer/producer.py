@@ -1,3 +1,4 @@
+import os
 import socket
 from confluent_kafka import Producer
 import requests
@@ -36,8 +37,11 @@ def kafka_callback(
 
 
 def main() -> None:
+    kafka_port = os.environ.get('KAFKA_PORT', "9092")
+    kafka_hostname = os.environ.get('KAFKA_HOSTNAME', 'localhost')
+
     kafka_config = {
-        'bootstrap.servers': "localhost:9092",
+        'bootstrap.servers': f"{kafka_hostname}:{kafka_port}",
         'client.id': socket.gethostname()
     }
 

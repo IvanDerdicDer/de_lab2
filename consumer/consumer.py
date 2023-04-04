@@ -1,5 +1,6 @@
 from confluent_kafka import Consumer, KafkaError, KafkaException, Message
 import sys
+import os
 
 
 def msg_process(msg: Message):
@@ -33,8 +34,11 @@ def basic_consume_loop(
 
 
 def main() -> None:
+    kafka_port = os.environ.get('KAFKA_PORT', "9092")
+    kafka_hostname = os.environ.get('KAFKA_HOSTNAME', 'localhost')
+
     kafka_config = {
-        'bootstrap.servers': "localhost:9092",
+        'bootstrap.servers': f"{kafka_hostname}:{kafka_port}",
         'group.id': "foo",
         'auto.offset.reset': 'smallest'
     }

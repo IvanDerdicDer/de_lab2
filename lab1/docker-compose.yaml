@@ -37,6 +37,28 @@ services:
     networks:
       - kafka_network
 
+  producer1:
+    image: producer:latest
+    hostname: producer1
+    environment:
+      KAFKA_PORT: 19092
+      KAFKA_HOSTNAME: kafka1
+    depends_on:
+      - kafka1
+    networks:
+      - kafka_network
+
+  consumer1:
+    image: consumer:latest
+    hostname: consumer1
+    environment:
+      KAFKA_PORT: 19092
+      KAFKA_HOSTNAME: kafka1
+    depends_on:
+      - kafka1
+    networks:
+      - kafka_network
+
 networks:
   kafka_network:
     driver: bridge
