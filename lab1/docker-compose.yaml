@@ -38,7 +38,8 @@ services:
       - kafka_network
 
   producer1:
-    image: producer:latest
+    build:
+      context: ../producer
     hostname: producer1
     environment:
       KAFKA_PORT: 19092
@@ -49,7 +50,8 @@ services:
       - kafka_network
 
   consumer1:
-    image: consumer:latest
+    build:
+      context: ../consumer
     hostname: consumer1
     environment:
       KAFKA_PORT: 19092
