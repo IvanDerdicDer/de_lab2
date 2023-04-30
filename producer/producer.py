@@ -85,7 +85,7 @@ def main() -> None:
     producer = Producer(kafka_config)
 
     btc_rates = get_btc_rate_historical(
-        "2023-01-01",
+        (datetime.now() - timedelta(days=100)).strftime("%Y-%m-%d"),
         datetime.now().strftime("%Y-%m-%d"),
         "h1"
     )
